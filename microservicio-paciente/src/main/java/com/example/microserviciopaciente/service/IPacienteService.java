@@ -5,9 +5,9 @@ import com.example.microserviciopaciente.model.Paciente;
 import java.util.List;
 
 public interface IPacienteService {
-    public List<Paciente> getPacientes();
-    public void savePaciente(Paciente pac);
-    public void deletePaciente(Long id);
-    public Paciente findPaciente(Long id);
-    public void editPaciente (Long id, Paciente pac);
+     List<Paciente> getPacientes();
+     void savePaciente(Paciente pac);
+     void deletePaciente(Long id);
+     Paciente findPaciente(Long id);
+     void editPaciente (Long id, Paciente pac);
 }
