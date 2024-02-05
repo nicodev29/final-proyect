@@ -2,6 +2,7 @@ package com.example.microserviciopaciente.controller;
 
 import com.example.microserviciopaciente.model.Paciente;
 import com.example.microserviciopaciente.service.IPacienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,8 +11,8 @@ import java.util.List;
 @RequestMapping("/api")
 public class PacienteController {
 
+    @Autowired
     private final IPacienteService pacienteServ;
-
     public PacienteController(IPacienteService pacienteServ) {
         this.pacienteServ = pacienteServ;
     }
@@ -56,7 +57,7 @@ public class PacienteController {
     }
 
     //6- obtener un paciente por dni
-    @GetMapping ("/pacientes/traerdni/{id}")
+    @GetMapping ("/pacientes/traerdni/{dni}")
     public Paciente traerPacienteDni (@PathVariable String dni) {
         return pacienteServ.findPacienteDni(dni);
     }

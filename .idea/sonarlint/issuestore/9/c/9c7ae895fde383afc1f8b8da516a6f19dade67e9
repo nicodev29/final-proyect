@@ -1,0 +1,6 @@
+
+r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…»éüÿÿÿÿ8Ì¯ÀÌ×1
+„
+java:S1488/"gImmediately return this expression instead of assigning it to the temporary variable "pacienteEditado".(±æ8Í¯ÀÌ×1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ù¯ÀÌ×1

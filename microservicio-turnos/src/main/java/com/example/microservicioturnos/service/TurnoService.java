@@ -14,9 +14,13 @@ import java.util.List;
 public class TurnoService implements ITurnoService{
 
     @Autowired
-    private ITurnoRepository turnoRepository;
+    private final ITurnoRepository turnoRepository;
+
+    @Autowired
     private final RestTemplate clienteRest;
-    public TurnoService(RestTemplate clienteRest) {
+
+    public TurnoService(ITurnoRepository turnoRepository, RestTemplate clienteRest) {
+        this.turnoRepository = turnoRepository;
         this.clienteRest = clienteRest;
     }
 
@@ -27,7 +31,7 @@ public class TurnoService implements ITurnoService{
     @Override
     public void saveTurno(LocalDate fecha, String tratamiento, String dniPaciente) {
 
-        Paciente paciente = clienteRest.getForObject("http://localhost:8080/pacientes/traerdni/"+dniPaciente, Paciente.class);
+        Paciente paciente = clienteRest.getForObject("http://localhost:8080/api/pacientes/traerdni/"+dniPaciente, Paciente.class);
         String nombrePaciente = paciente.getNombre() + " " + paciente.getApellido();
 
         Turno turno = new Turno();
@@ -35,6 +39,11 @@ public class TurnoService implements ITurnoService{
         turno.setTratamiento(tratamiento);
         turno.setNombrePaciente(nombrePaciente);
         turnoRepository.save(turno);
+
+        System.out.println("El turno fue creado correctamente\n" +
+                "ID: " + turno.getId_turno() + "\n" +
+                "Paciente: " + turno.getNombrePaciente() + "\n" +
+                "Fecha: " + turno.getFecha());
 
     }
     @Override

@@ -11,12 +11,16 @@ import java.util.List;
 @RequestMapping("/turnos")
 public class TurnoController {
 
-    private ITurnoService turnoServ;
+
+    private final ITurnoService turnoServ;
+    public TurnoController(ITurnoService turnoServ) {
+        this.turnoServ = turnoServ;
+    }
 
     @PostMapping("/crear")
     public String crearTurno (@RequestBody TurnoDTO turno) {
 
-        turnoServ.saveTurno(turno.getDate(),
+        turnoServ.saveTurno(turno.getFecha(),
                             turno.getTratamiento(),
                             turno.getDniPaciente());
 

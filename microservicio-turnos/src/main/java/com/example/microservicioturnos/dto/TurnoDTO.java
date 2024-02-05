@@ -10,7 +10,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TurnoDTO {
-    private LocalDate date;
+
+    private LocalDate fecha;
     private String tratamiento;
     private String dniPaciente;
 
