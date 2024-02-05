@@ -1,8 +1,11 @@
 package com.example.microservicioturnos.service;
 
+import com.example.microservicioturnos.configuration.AppConfig;
 import com.example.microservicioturnos.model.Turno;
 import com.example.microservicioturnos.repository.ITurnoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,6 +14,14 @@ import java.util.List;
 public class TurnoService implements ITurnoService{
 
     private ITurnoRepository turnoRepository;
+    private final RestTemplate clienteRest;
+    public TurnoService(ITurnoRepository turnoRepository, RestTemplate clienteRest) {
+        this.turnoRepository = turnoRepository;
+        this.clienteRest = clienteRest;
+    }
+    public TurnoService(RestTemplate clienteRest) {
+        this.clienteRest = clienteRest;
+    }
 
     @Override
     public List<Turno> getTurnos() {
