@@ -1,6 +1,6 @@
 package com.example.microservicioturnos.service;
 
-import com.example.microservicioturnos.configuration.AppConfig;
+import com.example.microservicioturnos.model.Paciente;
 import com.example.microservicioturnos.model.Turno;
 import com.example.microservicioturnos.repository.ITurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +13,9 @@ import java.util.List;
 @Service
 public class TurnoService implements ITurnoService{
 
+    @Autowired
     private ITurnoRepository turnoRepository;
     private final RestTemplate clienteRest;
-    public TurnoService(ITurnoRepository turnoRepository, RestTemplate clienteRest) {
-        this.turnoRepository = turnoRepository;
-        this.clienteRest = clienteRest;
-    }
     public TurnoService(RestTemplate clienteRest) {
         this.clienteRest = clienteRest;
     }
@@ -30,9 +27,13 @@ public class TurnoService implements ITurnoService{
     @Override
     public void saveTurno(LocalDate fecha, String tratamiento, String dniPaciente) {
 
+        Paciente paciente = clienteRest.getForObject("http://localhost:8080/pacientes/traerdni/"+dniPaciente, Paciente.class);
+        String nombrePaciente = paciente.getNombre() + " " + paciente.getApellido();
+
         Turno turno = new Turno();
         turno.setFecha(fecha);
         turno.setTratamiento(tratamiento);
+        turno.setNombrePaciente(nombrePaciente);
         turnoRepository.save(turno);
 
     }
