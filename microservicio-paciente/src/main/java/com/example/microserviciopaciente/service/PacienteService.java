@@ -36,6 +36,10 @@ public class PacienteService implements IPacienteService{
         this.savePaciente(pac);
     }
 
+    @Override
+    public Paciente findPacienteDni(String dni) {
+        return pacienteRepository.findPacienteDni(dni);
+    }
 
 
 }

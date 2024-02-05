@@ -55,4 +55,10 @@ public class PacienteController {
         return pacienteServ.findPaciente(id);
     }
 
+    //6- obtener un paciente por dni
+    @GetMapping ("/pacientes/traerdni/{id}")
+    public Paciente traerPacienteDni (@PathVariable String dni) {
+        return pacienteServ.findPacienteDni(dni);
+    }
+
 }
