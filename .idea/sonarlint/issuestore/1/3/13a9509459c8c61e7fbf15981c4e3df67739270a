@@ -1,8 +1,4 @@
 
 h
-java:S2259#"FA "NullPointerException" could be thrown; "paciente" is nullable here.(”ìªÑşÿÿÿÿ8èäØÒ×1
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8éäØÒ×1
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8éäØÒ×1
-G	java:S106+"+Replace this use of System.out by a logger.(Ëí­ñ8Â¼ŞÒ×1
+java:S2259?"FA "NullPointerException" could be thrown; "paciente" is nullable here.(”ìªÑşÿÿÿÿ8ã• Ø1
+G	java:S106E"+Replace this use of System.out by a logger.(Ëí­ñ8¥ã• Ø1

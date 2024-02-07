@@ -1,91 +1,88 @@
 package com.example.microservicioturnos.controller;
-
 import com.example.microservicioturnos.dto.TurnoDTO;
 import com.example.microservicioturnos.model.Turno;
 import com.example.microservicioturnos.service.ITurnoService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
- * The TurnoController class handles the request mappings for appointments.
+ * La clase TurnoController se encarga de manejar las asignaciones de solicitudes para las citas.
  */
 @RestController
 @RequestMapping("/turnos")
 public class TurnoController {
-
     /**
-     * The TurnoService class is autowired to handle the business logic related to appointments.
+     * La clase TurnoService se inyecta automáticamente para manejar la lógica empresarial relacionada con las citas.
      */
     private final ITurnoService turnoService;
 
     /**
-     * The TurnoController class is responsible for handling the request mappings related to appointments.
+     * La clase TurnoController es responsable de manejar las asignaciones de solicitudes relacionadas con las citas.
      */
     public TurnoController(ITurnoService turnoService) {
         this.turnoService = turnoService;
     }
 
     /**
-     * Creates a new appointment.
+     * Crea un nuevo turnoDTO.
      *
-     * @param appointment the details of the appointment to be created
-     * @return a string indicating the success of the appointment creation
+     * @param turnoDTO los detalles del turnoDTO a crear
+     * @return una cadena indicando el éxito de la creación del turnoDTO
      */
-    @PostMapping
-    public String createAppointment(@RequestBody TurnoDTO appointment) {
+    @PostMapping("/crear")
+    public String createAppointment(@RequestBody TurnoDTO turnoDTO) {
         turnoService.saveTurno(
-                appointment.getFecha(),
-                appointment.getTratamiento(),
-                appointment.getDniPaciente());
-        return "The appointment was successfully created";
+                turnoDTO.getFecha(),
+                turnoDTO.getTratamiento(),
+                turnoDTO.getDniPaciente());
+        return "El turnoDTO ha sido creado con éxito";
     }
 
     /**
-     * This method retrieves a list of appointments.
+     * Este método recupera una lista de citas.
      *
-     * @return The list of appointments.
+     * @return La lista de citas.
      */
     @GetMapping
-    List<Turno> getAppointment() {
+    List<Turno> obtenerTurno() {
         return turnoService.getTurnos();
     }
 
     /**
-     * Deletes an appointment with the given ID.
+     * Elimina una cita con el ID dado.
      *
-     * @param id the ID of the appointment to be deleted
-     * @return a success message indicating that the appointment was successfully deleted
+     * @param id el ID de la cita a eliminar
+     * @return un mensaje de éxito indicando que la cita se eliminó correctamente
      */
     @DeleteMapping("/{id}")
     String deleteAppointment(@PathVariable Long id) {
         turnoService.deleteTurno(id);
-        return "The appointment was successfully deleted";
+        return "La cita ha sido eliminada con éxito";
     }
 
     /**
-     * Edits an appointment with the given ID by replacing it with the new appointment details.
+     * Edita una cita con el ID dado reemplazándola con los nuevos detalles de la cita.
      *
-     * @param id               the ID of the appointment to edit
-     * @param appointmentToEdit the new appointment details to replace the existing appointment
+     * @param id el ID de la cita para editar
+     * @param turno los nuevos detalles de la cita para reemplazar la cita existente
      *
-     * @return the edited appointment
+     * @return la cita editada
      */
     @PutMapping("/{id}")
-    Turno editAppointment(@PathVariable Long id, @RequestBody Turno appointmentToEdit) {
-        turnoService.editTurno(id, appointmentToEdit);
-        Turno editedAppointment = turnoService.findTurno(id);
-        return editedAppointment;
+    Turno editAppointment(@PathVariable Long id, @RequestBody Turno turno) {
+        turnoService.editTurno(id, turno);
+        Turno turnoEdit = turnoService.findTurno(id);
+        return turnoEdit;
     }
 
     /**
-     * Retrieves the appointment with the specified ID.
+     * Recupera la cita con el ID especificado.
      *
-     * @param id the ID of the appointment to retrieve
-     * @return the appointment with the specified ID
+     * @param id el ID de la cita a recuperar
+     * @return la cita con el ID especificado
      */
     @GetMapping("/{id}")
-    Turno getAppointment(@PathVariable Long id) {
+    Turno obtenerTurno(@PathVariable Long id) {
         return turnoService.findTurno(id);
     }
 }

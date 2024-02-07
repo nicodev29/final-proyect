@@ -49,3 +49,9 @@ w
 G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b\4\b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
 w
 G.idea/sonarlint/issuestore/3/a/3aa2b12408525dd1f6c385451ad28365dda84e78,e\b\ebbf4552ff8be8be8f7f5ff912478d1a9dcfc130
+œ
+lmicroservicio-paciente/src/main/java/com/example/microserviciopaciente/MicroservicioPacienteApplication.java,1\a\1a53bfa9be01b736f348c585a3f4c9d541247548
+
+]microservicio-turnos/src/main/java/com/example/microservicioturnos/service/ITurnoService.java,8\c\8c252642df0a96bece9d0c33f52dd9894199ac6c
+n
+>microservicio-turnos/src/main/resources/application.properties,0\d\0d8d1e82058ae2f9f62469a98edc247ed339c557
