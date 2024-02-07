@@ -7,53 +7,85 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The TurnoController class handles the request mappings for appointments.
+ */
 @RestController
 @RequestMapping("/turnos")
 public class TurnoController {
 
+    /**
+     * The TurnoService class is autowired to handle the business logic related to appointments.
+     */
+    private final ITurnoService turnoService;
 
-    private final ITurnoService turnoServ;
-    public TurnoController(ITurnoService turnoServ) {
-        this.turnoServ = turnoServ;
+    /**
+     * The TurnoController class is responsible for handling the request mappings related to appointments.
+     */
+    public TurnoController(ITurnoService turnoService) {
+        this.turnoService = turnoService;
     }
 
-    @PostMapping("/crear")
-    public String crearTurno (@RequestBody TurnoDTO turno) {
-
-        turnoServ.saveTurno(turno.getFecha(),
-                            turno.getTratamiento(),
-                            turno.getDniPaciente());
-
-        return "El turno fue creado correctamente";
+    /**
+     * Creates a new appointment.
+     *
+     * @param appointment the details of the appointment to be created
+     * @return a string indicating the success of the appointment creation
+     */
+    @PostMapping
+    public String createAppointment(@RequestBody TurnoDTO appointment) {
+        turnoService.saveTurno(
+                appointment.getFecha(),
+                appointment.getTratamiento(),
+                appointment.getDniPaciente());
+        return "The appointment was successfully created";
     }
 
-    @GetMapping("/todos")
-    List <Turno> traerTurnos () {
-        return turnoServ.getTurnos();
+    /**
+     * This method retrieves a list of appointments.
+     *
+     * @return The list of appointments.
+     */
+    @GetMapping
+    List<Turno> getAppointment() {
+        return turnoService.getTurnos();
     }
 
-    @DeleteMapping("/borrar/{id}")
-    String deleteTurno (@PathVariable Long id) {
-        turnoServ.deleteTurno(id);
-
-        return "El turno fue eliminado correctamente";
+    /**
+     * Deletes an appointment with the given ID.
+     *
+     * @param id the ID of the appointment to be deleted
+     * @return a success message indicating that the appointment was successfully deleted
+     */
+    @DeleteMapping("/{id}")
+    String deleteAppointment(@PathVariable Long id) {
+        turnoService.deleteTurno(id);
+        return "The appointment was successfully deleted";
     }
 
-    @PutMapping ("/editar/{id_original}")
-    Turno editTurno (@PathVariable Long id_original,
-                     @RequestBody Turno turnoEditar) {
-
-        turnoServ.editTurno(id_original, turnoEditar);
-        Turno turnoEditado = turnoServ.findTurno(id_original);
-
-        return turnoEditado;
-
+    /**
+     * Edits an appointment with the given ID by replacing it with the new appointment details.
+     *
+     * @param id               the ID of the appointment to edit
+     * @param appointmentToEdit the new appointment details to replace the existing appointment
+     *
+     * @return the edited appointment
+     */
+    @PutMapping("/{id}")
+    Turno editAppointment(@PathVariable Long id, @RequestBody Turno appointmentToEdit) {
+        turnoService.editTurno(id, appointmentToEdit);
+        Turno editedAppointment = turnoService.findTurno(id);
+        return editedAppointment;
     }
 
-    @GetMapping ("/traer/{id}")
-    Turno traerTurno (@PathVariable Long id) {
-        return turnoServ.findTurno(id);
+    /**
+     * Retrieves the appointment with the specified ID.
+     *
+     * @param id the ID of the appointment to retrieve
+     * @return the appointment with the specified ID
+     */
+    @GetMapping("/{id}")
+    Turno getAppointment(@PathVariable Long id) {
+        return turnoService.findTurno(id);
     }
-
-
 }

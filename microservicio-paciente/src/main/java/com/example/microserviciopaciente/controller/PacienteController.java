@@ -2,64 +2,48 @@ package com.example.microserviciopaciente.controller;
 
 import com.example.microserviciopaciente.model.Paciente;
 import com.example.microserviciopaciente.service.IPacienteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/pacientes")
 public class PacienteController {
-
-    @Autowired
     private final IPacienteService pacienteServ;
     public PacienteController(IPacienteService pacienteServ) {
         this.pacienteServ = pacienteServ;
     }
 
-    //1- crear un nuevo paciente
-    @PostMapping("/pacientes/crear")
-    public String crearPaciente (@RequestBody Paciente pac) {
+    @PostMapping
+    public String createPaciente(@RequestBody Paciente pac) {
         pacienteServ.savePaciente(pac);
-
         return "El paciente fue creado correctamente";
     }
 
-    //2- traer todos los pacientes
-    @GetMapping("/pacientes/todos")
-    public List<Paciente> traerPacientes () {
+    @GetMapping
+    public List<Paciente> getAllPacientes() {
         return pacienteServ.getPacientes();
     }
-    //3- Eliminar un paciente
-    @DeleteMapping("/pacientes/borrar/{id}")
+
+    @DeleteMapping("/{id}")
     public String deletePaciente(@PathVariable Long id) {
         pacienteServ.deletePaciente(id);
-
         return "El paciente fue eliminado correctamente";
     }
 
-    //4- Editar un paciente
-    @PutMapping ("/pacientes/editar/{id_original}")
-    public Paciente editPaciente (@PathVariable Long id_original,
-                                  @RequestBody Paciente pacienteEditar) {
-
-        pacienteServ.editPaciente(id_original, pacienteEditar);
-        Paciente pacienteEditado = pacienteServ.findPaciente(id_original);
-
-        return pacienteEditado;
-
+    @PutMapping("/{id}")
+    public String updatePaciente(@PathVariable Long id, @RequestBody Paciente paciente) {
+        pacienteServ.editPaciente(id, paciente);
+        return "El paciente fue actualizado correctamente";
     }
 
-    //5- obtener un paciente en particular
-    @GetMapping ("/pacientes/traer/{id}")
-    public Paciente traerPaciente (@PathVariable Long id) {
+    @GetMapping("/{id}")
+    public Paciente getPaciente(@PathVariable Long id) {
         return pacienteServ.findPaciente(id);
     }
 
-    //6- obtener un paciente por dni
-    @GetMapping ("/pacientes/traerdni/{dni}")
-    public Paciente traerPacienteDni (@PathVariable String dni) {
+    @GetMapping("/dni/{dni}")
+    public Paciente getPacienteByDni(@PathVariable String dni) {
         return pacienteServ.findPacienteDni(dni);
     }
-
 }

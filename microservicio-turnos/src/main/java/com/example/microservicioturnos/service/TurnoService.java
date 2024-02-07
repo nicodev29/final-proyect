@@ -31,7 +31,7 @@ public class TurnoService implements ITurnoService{
     @Override
     public void saveTurno(LocalDate fecha, String tratamiento, String dniPaciente) {
 
-        Paciente paciente = clienteRest.getForObject("http://localhost:8080/api/pacientes/traerdni/"+dniPaciente, Paciente.class);
+        Paciente paciente = clienteRest.getForObject("http://localhost:8080/api/pacientes/dni/"+dniPaciente, Paciente.class);
         String nombrePaciente = paciente.getNombre() + " " + paciente.getApellido();
 
         Turno turno = new Turno();
