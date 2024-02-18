@@ -11,9 +11,13 @@
         <module name="microservicio-paciente" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-config" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cloud-config" options="-parameters" />
       <module name="microservicio-paciente" options="-parameters" />
       <module name="microservicio-turnos" options="-parameters" />
     </option>
