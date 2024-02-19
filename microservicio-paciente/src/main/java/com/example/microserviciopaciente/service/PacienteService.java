@@ -2,14 +2,15 @@ package com.example.microserviciopaciente.service;
 
 import com.example.microserviciopaciente.model.Paciente;
 import com.example.microserviciopaciente.repository.IPacienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class PacienteService implements IPacienteService{
 
+    @Autowired
     private final IPacienteRepository pacienteRepository;
-
     public PacienteService(IPacienteRepository pacienteRepository) {
         this.pacienteRepository = pacienteRepository;
     }
@@ -36,6 +37,10 @@ public class PacienteService implements IPacienteService{
         this.savePaciente(pac);
     }
 
+    @Override
+    public Paciente findPacienteDni(String dni) {
+        return pacienteRepository.findPacienteDni(dni);
+    }
 
 
 }
