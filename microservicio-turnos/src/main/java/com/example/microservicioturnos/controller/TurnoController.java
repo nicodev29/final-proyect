@@ -2,6 +2,7 @@ package com.example.microservicioturnos.controller;
 import com.example.microservicioturnos.dto.TurnoDTO;
 import com.example.microservicioturnos.model.Turno;
 import com.example.microservicioturnos.service.ITurnoService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -16,10 +17,13 @@ public class TurnoController {
      */
     private final ITurnoService turnoService;
 
+    @Value("${server.port}")
+    private int serverPort;
+
     /**
      * La clase TurnoController es responsable de manejar las asignaciones de solicitudes relacionadas con las citas.
      */
-    public TurnoController(ITurnoService turnoService) {
+    private TurnoController(ITurnoService turnoService) {
         this.turnoService = turnoService;
     }
 
@@ -83,6 +87,7 @@ public class TurnoController {
      */
     @GetMapping("/{id}")
     Turno obtenerTurno(@PathVariable Long id) {
+        System.out.println("El puerto del servidor es: " + serverPort);
         return turnoService.findTurno(id);
     }
 }
