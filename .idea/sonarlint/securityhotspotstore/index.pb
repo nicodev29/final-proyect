@@ -1,13 +1,21 @@
 
-7
-pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 }
 Msrc/main/java/com/example/microservicioturnos/controller/TurnoController.java,8/5/858a4b04929debcb1877f3fcc3980c0817fd0e0b
 Ö
 Usrc/main/java/com/example/microserviciopaciente/MicroservicioPacienteApplication.java,5/9/599ddf7e0ce3740402b8621b478f89dbc84380e0
 Å
 Qsrc/main/java/com/example/microservicioturnos/MicroservicioTurnosApplication.java,1/0/10f57c1f81670bda6e7945c296f917ac4e7bd6a2
+7
+pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 z
 Jsrc/main/java/com/example/microservicioturnos/configuration/AppConfig.java,3/7/370d1bec208df17a6f396594e63e3ef45130b0b8
-8
-mvnw.cmd,1/f/1f1763f358c257ea3515417352b82b0165647ad1
+w
+Gsrc/main/java/com/example/microservicioturnos/service/TurnoService.java,d/e/de54a1d51304691ba7313cb24ea5c536060590b6
+~
+Nsrc/main/java/com/example/microservicioturnos/repository/ITurnoRepository.java,2/3/23966ae3685851ec4d834cdf16b2ca6cfc60ffd9
+o
+?src/main/java/com/example/microservicioturnos/dto/TurnoDTO.java,5/7/5720b700394643ab2502e517492f618c50d2d051
+|
+Lsrc/main/java/com/example/microserviciopaciente/service/PacienteService.java,e/6/e626b191c6fe4f015374538ab4fadac0058e32ff
+}
+Msrc/main/java/com/example/microserviciopaciente/test/PacienteServiceTest.java,b/9/b98cbc8cdd70050961c330838b03cf2e7af38a90
